@@ -1,6 +1,6 @@
 package Usuarios;
 
-public class Admin {
+public class Usuario {
     // Atributos básicos
         String nombre;
         String apellido;

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static Admin usuarioRegistrado = null;
+    static Usuario usuarioRegistrado = null;
 
     public static void main(String[] args) {
 
@@ -14,7 +14,7 @@ public class Main {
 
         while (opcion != 3) {
 
-            System.out.println("\n===== MENÚ =====");
+            System.out.println("MENÚ");
             System.out.println("1 - Registrarse");
             System.out.println("2 - Login");
             System.out.println("3 - Salir");
@@ -54,7 +54,7 @@ public class Main {
 
         }
 
-        Admin usuario = new Admin();
+        Usuario usuario = new Usuario();
 
         System.out.print("Ingrese nombre: ");
         usuario.nombre = scanner.nextLine();
