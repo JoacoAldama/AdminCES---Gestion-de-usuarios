@@ -6,6 +6,7 @@ public class Admin {
         String apellido;
         String email;
         String contraseña;
+        String repetircontraseña;
         String pais;
 
     }
