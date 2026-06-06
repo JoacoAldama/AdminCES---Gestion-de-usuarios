@@ -1,4 +1,4 @@
-# Proyecto AdminCES
+# Proyecto AdminCES -En construcción.
 
 ## URL del sistema
 
@@ -93,6 +93,61 @@ El sistema presenta funcionalidades típicas de una base de gestión de usuarios
 * control de acceso
 * actualización de credenciales
 
+---
+Diagrama UML(Actual 6/6/2026):
+
++----------------------+
+|       Usuario        |
++----------------------+
+| - nombre: String     |
+| - apellido: String   |
+| - email: String      |
+| - contraseña: String |
+| - pais: String       |
+| - edad: int          |
++----------------------+
+| + Usuario(...)       |
+| + getNombre()        |
+| + getApellido()      |
+| + getEmail()         |
+| + getContraseña()    |
+| + getPais()          |
+| + getEdad()          |
+| + setNombre()        |
+| + setApellido()      |
+| + setEmail()         |
+| + setContraseña()    |
+| + setPais()          |
+| + setEdad()          |
++----------------------+
+           ▲
+           |
+    -----------------
+    |               |
+    |               |
++-----------+   +-----------+
+|   Admin   |   |  Tester   |
++-----------+   +-----------+
+|           |   |           |
++-----------+   +-----------+
+| +Admin()  |   | +Tester() |
++-----------+   +-----------+
+
+
++--------------------------------------+
+|         SistemaUsuario               |
++--------------------------------------+
+| - usuarios: Usuario[]                |
+| - cantidadUsuarios: int              |
++--------------------------------------+
+| + main()                             |
+| + registrarUsuario()                 |
+| + loginUsuario()                     |
++--------------------------------------+
+            |
+            | utiliza
+            ▼
+         Usuario[]
 ---
 # Autor
 
