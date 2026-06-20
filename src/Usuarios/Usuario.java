@@ -1,6 +1,6 @@
 package Usuarios;
 
-public class Usuario {
+public abstract class Usuario {
     // Atributos básicos
        private String nombre;
        private String apellido;
@@ -19,7 +19,9 @@ public class Usuario {
         this.edad = edad;
     }
 
-//Getters y Setyters
+    public abstract String getTipoUsuario();
+
+//Getters y Setters
         public String getNombre() {
         return nombre;
     }
