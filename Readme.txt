@@ -94,61 +94,64 @@ El sistema presenta funcionalidades típicas de una base de gestión de usuarios
 * actualización de credenciales
 
 ---
-Diagrama UML(Actual 6/6/2026):
+Diagrama UML(Actual 21/6/2026):
 
-+----------------------+
-|       Usuario        |
-+----------------------+
-| - nombre: String     |
-| - apellido: String   |
-| - email: String      |
-| - contraseña: String |
-| - pais: String       |
-| - edad: int          |
-+----------------------+
-| + Usuario(...)       |
-| + getNombre()        |
-| + getApellido()      |
-| + getEmail()         |
-| + getContraseña()    |
-| + getPais()          |
-| + getEdad()          |
-| + setNombre()        |
-| + setApellido()      |
-| + setEmail()         |
-| + setContraseña()    |
-| + setPais()          |
-| + setEdad()          |
-+----------------------+
-           ▲
-           |
-    -----------------
-    |               |
-    |               |
-+-----------+   +-----------+
-|   Admin   |   |  Tester   |
-+-----------+   +-----------+
-|           |   |           |
-+-----------+   +-----------+
-| +Admin()  |   | +Tester() |
-+-----------+   +-----------+
++----------------------------------+
+|    <<abstract>> Usuario          |
++----------------------------------+
+| - nombre: String                 |
+| - apellido: String               |
+| - email: String                  |
+| - contraseña: String             |
+| - pais: String                   |
+| - edad: int                      |
++----------------------------------+
+| + Usuario(...)                   |
+| + getNombre()                    |
+| + getApellido()                  |
+| + getEmail()                     |
+| + getContraseña()                |
+| + getPais()                      |
+| + getEdad()                      |
+| + setNombre()                    |
+| + setApellido()                  |
+| + setEmail()                     |
+| + setContraseña()                |
+| + setPais()                      |
+| + setEdad()                      |
+| + getTipoUsuario()               |
++----------------------------------+
+                ▲
+                |
+        -------------------
+        |                 |
+        |                 |
++----------------+  +----------------+
+|     Admin      |  |     Tester     |
++----------------+  +----------------+
+|                |  |                |
++----------------+  +----------------+
+| + Admin(...)   |  | + Tester(...)  |
+| + getTipoUsuario()| | + getTipoUsuario() |
++----------------+  +----------------+
 
 
 +--------------------------------------+
 |         SistemaUsuario               |
 +--------------------------------------+
-| - usuarios: Usuario[]                |
-| - cantidadUsuarios: int              |
+| - usuarios: ArrayList<Usuario>       |
 +--------------------------------------+
-| + main()                             |
 | + registrarUsuario()                 |
 | + loginUsuario()                     |
+| + listarUsuarios()                   |
+| + buscarUsuario()                    |
 +--------------------------------------+
-            |
-            | utiliza
-            ▼
-         Usuario[]
----
+                 |
+                 | utiliza
+                 ▼
+      ArrayList<Usuario>
+
+--------
 # Autor
 
 Joaquín Aldama
