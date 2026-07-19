@@ -1,9 +1,29 @@
-# Proyecto AdminCES -En construcción.
+#AdminCES 
+
+Proyecto desarrollado en Java como entrega final del curso "Introducción a la Programación para Testers".
+El sistema simula la gestión de usuarios del portal AdminCES, permitiendo el registro de administradores, autenticación, creación de usuarios Tester y consulta de usuarios registrados.
 
 ## URL del sistema
-
 http://cestore.ces.com.uy/adminces
 
+## Tecnologías utilizadas
+
+- Java
+- IntelliJ IDEA
+
+
+## ¿Cómo ejecutar?
+
+1. Clonar el repositorio.
+
+2. Abrir el proyecto en IntelliJ IDEA.
+
+3. Ejecutar SistemaUsuario.java.
+
+4. Utilizar el menú de navegación por consola.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 # Funcionalidades principales del sistema
@@ -33,7 +53,7 @@ Permite autenticar usuarios administradores dentro del sistema.
 
 ---
 
-## 3. Reinicio de Contraseña
+## 3. Reinicio de Contraseña (Pendiente implementar)
 
 El sistema permite actualizar la contraseña de un usuario administrador existente.
 
@@ -52,7 +72,7 @@ El sistema permite a los usuarios Administradores gestionar cuentas de usuarios 
 Las funcionalidades identificadas son:
 
 * Alta de usuarios Tester
-* Baja de usuarios Tester
+* Baja de usuarios Tester (Pendiente implementar)
 * Consulta de lista completa de usuarios (incluyendo administradores)
 
 ---
@@ -91,65 +111,100 @@ El sistema presenta funcionalidades típicas de una base de gestión de usuarios
 * autenticación
 * gestión de usuarios
 * control de acceso
-* actualización de credenciales
+
 
 ---
-Diagrama UML(Actual 21/6/2026):
+Diagrama UML(Actualizado 19/7/2026):
 
-+----------------------------------+
-|    <<abstract>> Usuario          |
-+----------------------------------+
-| - nombre: String                 |
-| - apellido: String               |
-| - email: String                  |
-| - contraseña: String             |
-| - pais: String                   |
-| - edad: int                      |
-+----------------------------------+
-| + Usuario(...)                   |
-| + getNombre()                    |
-| + getApellido()                  |
-| + getEmail()                     |
-| + getContraseña()                |
-| + getPais()                      |
-| + getEdad()                      |
-| + setNombre()                    |
-| + setApellido()                  |
-| + setEmail()                     |
-| + setContraseña()                |
-| + setPais()                      |
-| + setEdad()                      |
-| + getTipoUsuario()               |
-+----------------------------------+
-                ▲
-                |
-        -------------------
-        |                 |
-        |                 |
-+----------------+  +----------------+
-|     Admin      |  |     Tester     |
-+----------------+  +----------------+
-|                |  |                |
-+----------------+  +----------------+
-| + Admin(...)   |  | + Tester(...)  |
-| + getTipoUsuario()| | + getTipoUsuario() |
-+----------------+  +----------------+
+                                         +--------------------------------------+
+                                         |        <<abstract>> Usuario          |
+                                         +--------------------------------------+
+                                         | - nombre: String                     |
+                                         | - apellido: String                   |
+                                         | - email: String                      |
+                                         | - contraseña: String                 |
+                                         | - pais: String                       |
+                                         | - edad: int                          |
+                                         +--------------------------------------+
+                                         | + Usuario(...)                       |
+                                         | + getNombre()                        |
+                                         | + getApellido()                      |
+                                         | + getEmail()                         |
+                                         | + getContraseña()                    |
+                                         | + getPais()                          |
+                                         | + getEdad()                          |
+                                         | + setNombre()                        |
+                                         | + setApellido()                      |
+                                         | + setEmail()                         |
+                                         | + setContraseña()                    |
+                                         | + setPais()                          |
+                                         | + setEdad()                          |
+                                         | + getTipoUsuario()                   |
+                                         +--------------------------------------+
+                                                        ▲
+                                                        │
+                                   ┌────────────────────┴────────────────────┐
+                                   │                                         │
+                     +---------------------------+           +---------------------------+
+                     |          Admin            |           |          Tester           |
+                     +---------------------------+           +---------------------------+
+                     |                           |           |                           |
+                     +---------------------------+           +---------------------------+
+                     | + Admin(...)              |           | + Tester(...)             |
+                     | + getTipoUsuario()        |           | + getTipoUsuario()        |
+                     +---------------------------+           +---------------------------+
 
 
-+--------------------------------------+
-|         SistemaUsuario               |
-+--------------------------------------+
-| - usuarios: ArrayList<Usuario>       |
-+--------------------------------------+
-| + registrarUsuario()                 |
-| + loginUsuario()                     |
-| + listarUsuarios()                   |
-| + buscarUsuario()                    |
-+--------------------------------------+
-                 |
-                 | utiliza
-                 ▼
-      ArrayList<Usuario>
++------------------------------------------------------+
+|          <<Singleton>> GestorUsuarios                |
++------------------------------------------------------+
+| - instancia: GestorUsuarios                          |
+| - usuarios: ArrayList<Usuario>                       |
++------------------------------------------------------+
+| + getInstance()                                      |
+| + getUsuarios()                                      |
+| + agregarUsuario(Usuario)                            |
++------------------------------------------------------+
+                    │
+                    │ administra
+                    ▼
+                 0..* Usuario
+
+
++------------------------------------------------------+
+|                SistemaUsuario                        |
++------------------------------------------------------+
+| - gestor: GestorUsuarios                             |
++------------------------------------------------------+
+| + main(String[])                                     |
+| + registrarUsuario(Scanner)                          |
+| + validarEmail(String)                               |
+| + loginUsuario(Scanner)                              |
+| + crearTester(Scanner)                               |
+| + listarUsuarios()                                   |
+| + buscarUsuario(Scanner)                             |
+| + menuAdministrador(Scanner)                         |
++------------------------------------------------------+
+                    │
+                    │ utiliza
+                    ▼
+             GestorUsuarios
+
+
++-------------------------------------+
+| <<Exception>>                       |
+| DatosInvalidosException             |
++-------------------------------------+
+
++-------------------------------------+
+| <<Exception>>                       |
+| EmailDuplicadoException             |
++-------------------------------------+
+
++-------------------------------------+
+| <<Exception>>                       |
+| UsuarioNoEncontradoException        |
++-------------------------------------+
 
 --------
 # Autor

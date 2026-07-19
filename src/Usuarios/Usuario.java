@@ -6,7 +6,6 @@ public abstract class Usuario {
        private String apellido;
        private String email;
        private String contraseña;
-       private String repetircontraseña;
        private String pais;
        private int edad;
 
